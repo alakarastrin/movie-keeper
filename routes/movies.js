@@ -1,24 +1,23 @@
 const express = require('express');
+const {
+  getMovies,
+  getMovie,
+  createMovie,
+  updateMovie,
+  deleteMovie,
+} = require('../controllers/movies');
+
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  res.status(200).json({ success: true, msg: 'Show all movies' });
-});
+router
+  .route('/')
+  .get(getMovies)
+  .post(createMovie);
 
-router.get('/:id', (req, res) => {
-  res.status(200).json({ success: true, msg: `Show movie ${req.params.id}` });
-});
-
-router.post('/', (req, res) => {
-  res.status(200).json({ success: true, msg: 'Create new movie' });
-});
-
-router.put('/:id', (req, res) => {
-  res.status(200).json({ success: true, msg: `Update movie ${req.params.id}` });
-});
-
-router.delete('/:id', (req, res) => {
-  res.status(200).json({ success: true, msg: `Delete movie ${req.params.id}` });
-});
+router
+  .route('/:id')
+  .get(getMovie)
+  .put(updateMovie)
+  .delete(deleteMovie);
 
 module.exports = router;
