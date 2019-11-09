@@ -14,6 +14,8 @@ const movies = require('./routes/movies');
 
 const app = express();
 
+app.use(express.json());
+
 // logging middleware
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));

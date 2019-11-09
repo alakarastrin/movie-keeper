@@ -7,7 +7,8 @@
     "country": "USA",
     "seasons": 5,
     "rating": 8.8,
-    "release": "January 20, 2008 – September 29, 2013"
+    "release": "January 20, 2008 – September 29, 2013",
+    "forChildren": false
   },
   {
     "_id": "e35fd8k774e00sv670ls84ld7",
@@ -17,6 +18,7 @@
     "country": "USA",
     "seasons": 7.9,
     "rating": 6,
-    "release": "September 10, 2009 – March 10, 2017"
+    "release": "September 10, 2009 – March 10, 2017",
+    "forChildren": false
   }
 ]

@@ -14,13 +14,16 @@ const MovieSchema = new mongoose.Schema({
     required: ['true', 'Please add a description'],
     unique: true,
     trim: true,
-    maxlength: [200, 'Description can not be more than 200 characters'],
+    maxlength: [1000, 'Description can not be more than 1000 characters'],
   },
   genre: String,
   country: String,
   rating: Number,
   seasons: Number,
   release: String,
+  forChildren: {
+    type: Boolean,
+  },
 });
 
 module.exports = mongoose.model('Movie', MovieSchema);

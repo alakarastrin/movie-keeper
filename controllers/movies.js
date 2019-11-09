@@ -1,36 +1,84 @@
-// Create controller method associate with route
+const Movie = require('../models/Movie');
 
 // @desc      Get all movies
 // @route     GET /api/v1/movies
 // @access    Public
-exports.getMovies = (req, res, next) => {
-  res.status(200).json({ success: true, msg: 'Show all movies' });
+exports.getMovies = async (req, res, next) => {
+  try {
+    const movies = await Movie.find();
+
+    res.status(200).json({ success: true, data: movies });
+  } catch (error) {
+    res.status(400).json({ success: false });
+  }
 };
 
 // @desc      Get single movie
 // @route     GET /api/v1/movies/:id
 // @access    Public
-exports.getMovie = (req, res, next) => {
-  res.status(200).json({ success: true, msg: `Show movie ${req.params.id}` });
+exports.getMovie = async (req, res, next) => {
+  try {
+    const movie = await Movie.findById(req.params.id);
+
+    if (!movie) {
+      return res.status(400).json({ success: false });
+    }
+
+    res.status(200).json({ success: true, data: movie });
+  } catch (error) {
+    res.status(400).json({ success: false });
+  }
 };
 
 // @desc      Create new movie
 // @route     POST /api/v1/movies
 // @access    Private
-exports.createMovie = (req, res, next) => {
-  res.status(200).json({ success: true, msg: 'Create new movie' });
+exports.createMovie = async (req, res, next) => {
+  try {
+    const movie = await Movie.create(req.body);
+
+    res.status(201).json({
+      success: true,
+      data: movie,
+    });
+  } catch (error) {
+    res.status(400).json({ success: false });
+  }
 };
 
 // @desc      Update movie
 // @route     PUT /api/v1/movies/:id
 // @access    Private
-exports.updateMovie = (req, res, next) => {
-  res.status(200).json({ success: true, msg: `Update movie ${req.params.id}` });
+exports.updateMovie = async (req, res, next) => {
+  try {
+    const movie = await Movie.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+
+    res.status(200).json({ success: true, data: movie });
+
+    if (!movie) {
+      return res.status(400).json({ success: false });
+    }
+  } catch (error) {
+    res.status(400).json({ success: false });
+  }
 };
 
 // @desc      Delete movie
 // @route     DELETE /api/v1/movies/:id
 // @access    Private
-exports.deleteMovie = (req, res, next) => {
-  res.status(200).json({ success: true, msg: `Delete movie ${req.params.id}` });
+exports.deleteMovie = async (req, res, next) => {
+  try {
+    const movie = await Movie.findByIdAndDelete(req.params.id);
+
+    res.status(200).json({ success: true, data: {} });
+
+    if (!movie) {
+      return res.status(400).json({ success: false });
+    }
+  } catch (error) {
+    res.status(400).json({ success: false });
+  }
 };
