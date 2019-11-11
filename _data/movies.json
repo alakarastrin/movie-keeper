@@ -16,9 +16,31 @@
     "description": "The series is set in the fictional town of Mystic Falls, Virginia, a town charged with supernatural history since its settlement of migrants from New England in the late 18th century. It follows the life of Elena Gilbert, a teenage girl who has just lost both parents in a car accident, as she falls in love with a 162-year-old vampire named Stefan Salvatore.",
     "genre": "fantasy",
     "country": "USA",
-    "seasons": 7.9,
-    "rating": 6,
+    "seasons": 6,
+    "rating": 7.9,
     "release": "September 10, 2009 – March 10, 2017",
+    "forChildren": false
+  },
+  {
+    "_id": "7ekf7h0320ng730d04ld38d00",
+    "name": "13 Reasons Why",
+    "description": "In season one, seventeen-year-old Clay Jensen returns home from school one day to find a mysterious box on his porch. Inside he discovers thirteen cassette tapes recorded by Hannah Baker, his deceased classmate who killed herself two weeks earlier. On the tapes, Hannah unfolds an intensely emotional audio diary, detailing why she decided to end her life. It appears each person who receives this package of old-style tapes is fundamentally related to why she killed herself.",
+    "genre": "teen drama",
+    "country": "USA",
+    "seasons": 3,
+    "rating": 7.5,
+    "release": "March 31, 2017 – present",
+    "forChildren": false
+  },
+  {
+    "_id": "9cd70a8c7729f50jd875162e",
+    "name": "True Detective - 1st season ",
+    "description": "Constructed as a nonlinear narrative, season one focuses on Louisiana State Police homicide detectives Rustin 'Rust' Cohle and Martin 'Marty' Hart (Harrelson), who investigated the murder of prostitute Dora Lange in 1995. Seventeen years later, they must revisit the investigation, along with several other unsolved crimes.",
+    "genre": "Detective",
+    "country": "USA",
+    "seasons": 1,
+    "rating": 8.7,
+    "release": "January 12 – March 9, 2014",
     "forChildren": false
   }
 ]
