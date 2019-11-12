@@ -1,46 +1,46 @@
 [
   {
-    "_id": "6f409a77td4f2g67b8bd38b02",
+    "_id": "5dca8bbf54e1f426970c62d5",
     "name": "Breaking Bad",
     "description": "The series tells the story of Walter White, a struggling and depressed high school chemistry teacher who is diagnosed with stage-3 lung cancer. Together with his former student Jesse Pinkman, White turns to a life of crime by producing and selling crystallized methamphetamine to secure his family's financial future before he dies, while navigating the dangers of the criminal underworld.",
     "genre": "crime drama",
     "country": "USA",
     "seasons": 5,
     "rating": 8.8,
-    "release": "January 20, 2008 – September 29, 2013",
+    "release": "January 20, 2008",
     "forChildren": false
   },
   {
-    "_id": "e35fd8k774e00sv670ls84ld7",
+    "_id": "5dca8bbf54e1f426970c62d6",
     "name": "The Vampire Diaries",
     "description": "The series is set in the fictional town of Mystic Falls, Virginia, a town charged with supernatural history since its settlement of migrants from New England in the late 18th century. It follows the life of Elena Gilbert, a teenage girl who has just lost both parents in a car accident, as she falls in love with a 162-year-old vampire named Stefan Salvatore.",
     "genre": "fantasy",
     "country": "USA",
     "seasons": 6,
     "rating": 7.9,
-    "release": "September 10, 2009 – March 10, 2017",
+    "release": "September 10, 2009",
     "forChildren": false
   },
   {
-    "_id": "7ekf7h0320ng730d04ld38d00",
+    "_id": "5dca8bbf54e1f426970c62d7",
     "name": "13 Reasons Why",
     "description": "In season one, seventeen-year-old Clay Jensen returns home from school one day to find a mysterious box on his porch. Inside he discovers thirteen cassette tapes recorded by Hannah Baker, his deceased classmate who killed herself two weeks earlier. On the tapes, Hannah unfolds an intensely emotional audio diary, detailing why she decided to end her life. It appears each person who receives this package of old-style tapes is fundamentally related to why she killed herself.",
     "genre": "teen drama",
     "country": "USA",
     "seasons": 3,
     "rating": 7.5,
-    "release": "March 31, 2017 – present",
+    "release": "March 31, 2017",
     "forChildren": false
   },
   {
-    "_id": "9cd70a8c7729f50jd875162e",
-    "name": "True Detective - 1st season ",
+    "_id": "5dca8bbf54e1f426970c62d8",
+    "name": "True Detective 1st season ",
     "description": "Constructed as a nonlinear narrative, season one focuses on Louisiana State Police homicide detectives Rustin 'Rust' Cohle and Martin 'Marty' Hart (Harrelson), who investigated the murder of prostitute Dora Lange in 1995. Seventeen years later, they must revisit the investigation, along with several other unsolved crimes.",
     "genre": "Detective",
     "country": "USA",
     "seasons": 1,
     "rating": 8.7,
-    "release": "January 12 – March 9, 2014",
+    "release": "January 12, 2014",
     "forChildren": false
   }
 ]

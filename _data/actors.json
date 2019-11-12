@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Nina Dobrev",
+    "email": "ninad@gmail.com",
+    "age": 30,
+    "born": "Bulgaria",
+    "movies": ["5dca8bbf54e1f426970c62d6"]
+  },
+  {
+    "name": "Matthew McConaughey",
+    "email": "mmcconaughey@gmail.com",
+    "age": 50,
+    "born": "USA",
+    "movies": ["5dca8bbf54e1f426970c62d8"]
+  },
+  {
+    "name": "Aaron Paul",
+    "email": "aaronpaul@gmail.com",
+    "age": 40,
+    "born": "USA",
+    "movies": ["5dca8bbf54e1f426970c62d5"]
+  },
+  {
+    "name": "Miles Heizer",
+    "email": "heizer@gmail.com",
+    "age": 25,
+    "born": "USA",
+    "movies": ["5dca8bbf54e1f426970c62d7"]
+  },
+  {
+    "name": "Ian Somerhalder",
+    "email": "ians@gmail.com",
+    "age": 40,
+    "born": "USA",
+    "movies": ["5dca8bbf54e1f426970c62d6"]
+  }
+]
