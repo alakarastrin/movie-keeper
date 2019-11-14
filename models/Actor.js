@@ -17,7 +17,6 @@ const ActorSchema = new mongoose.Schema({
   },
   age: Number,
   born: String,
-  // TODO: change movie to movies everywhere on actor
   movies: [
     {
       type: mongoose.Schema.Types.ObjectId,

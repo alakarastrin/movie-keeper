@@ -2,30 +2,22 @@ const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
 const Actor = require("../models/Actor");
 const Movie = require("../models/Movie");
+const { getDocsByPage } = require("../helpers/docHelpers");
 
 // @desc      Get all actors
 // @route     GET /api/v1/actors?movieId=12345
 // @route     GET /api/v1/movies/movieId/actors
 // @access    Public
 exports.getActors = asyncHandler(async (req, res, next) => {
-  const { movieId, p } = req.query;
+  const { movieId, page, limit } = req.query;
 
-  let query;
+  let actors;
 
   if (movieId) {
-    query = Actor.find({ movie: movieId });
+    actors = await getDocsByPage(Actor, { movie: movieId }, page, limit);
+  } else {
+    actors = await getDocsByPage(Actor, {}, page, limit);
   }
-
-  if (p) {
-    // TODO: Pagination
-    query = Actor.find();
-  }
-
-  if (!movieId && !p) {
-    query = Actor.find();
-  }
-
-  const actors = await query;
 
   res.status(200).json({
     success: true,
