@@ -13,6 +13,7 @@ connectDB();
 // Route
 const movies = require("./routes/movies");
 const actors = require("./routes/actors");
+const accounts = require("./routes/accounts");
 
 const app = express();
 
@@ -26,6 +27,7 @@ if (process.env.NODE_ENV === "development") {
 // Routes
 app.use("/api/v1/movies", movies);
 app.use("/api/v1/actors", actors);
+app.use("/api/v1/accounts", accounts);
 
 app.use(errorHandler);
 

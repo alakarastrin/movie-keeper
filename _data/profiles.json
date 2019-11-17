@@ -1,0 +1,16 @@
+[
+  {
+    "username": "alakarastrin",
+    "about": "I like to travel and watch interesting movies",
+    "role": "publisher",
+    "photo": "alakara.png",
+    "movies": ""
+  },
+  {
+    "username": "jaredbrown",
+    "about": "This is my movie collection",
+    "role": "user",
+    "photo": "jared.png",
+    "movies": ""
+  }
+]
