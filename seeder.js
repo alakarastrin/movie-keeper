@@ -11,6 +11,7 @@ dotenv.config({ path: "./config/config.env" });
 const Movie = require("./models/Movie");
 const Actor = require("./models/Actor");
 const Account = require("./models/Account");
+const Profile = require("./models/Profile");
 
 console.log("Loading...");
 
@@ -32,6 +33,9 @@ const actors = JSON.parse(
 const accounts = JSON.parse(
   fs.readFileSync(`${__dirname}/_data/accounts.json`, "utf-8")
 );
+const profiles = JSON.parse(
+  fs.readFileSync(`${__dirname}/_data/profiles.json`, "utf-8")
+);
 
 // Import into database
 const importData = async () => {
@@ -39,6 +43,7 @@ const importData = async () => {
     await Movie.create(movies);
     await Actor.create(actors);
     await Account.create(accounts);
+    await Profile.create(profiles);
 
     console.log("Data Imported...".green.inverse);
     process.exit();
@@ -53,6 +58,7 @@ const deleteData = async () => {
     await Movie.deleteMany();
     await Actor.deleteMany();
     await Account.deleteMany();
+    await Profile.deleteMany();
 
     console.log("Data Destroyed...".red.inverse);
     process.exit();

@@ -1,17 +1,33 @@
 const ErrorResponse = require("../utils/errorResponse");
 const asyncHandler = require("../middleware/async");
 const Account = require("../models/Account");
-// const { getDocsByPage } = require("../helpers/docHelpers");
+const Profile = require("../models/Profile");
+const { getDocsByPage } = require("../helpers/docHelpers");
 
 // @desc      Get all accounts
 // @route     GET /api/v1/accounts
 // @access    Public
 exports.getAccounts = asyncHandler(async (req, res, next) => {
-  const accounts = await Account.find();
+  const { accountId, page, limit } = req.query;
 
-  res
-    .status(200)
-    .json({ success: true, count: accounts.length, data: accounts });
+  let accounts;
+
+  if (accountId) {
+    accounts = await getDocsByPage(
+      Account,
+      { account: accountId },
+      page,
+      limit
+    );
+  } else {
+    accounts = await getDocsByPage(Account, {}, page, limit);
+  }
+
+  res.status(200).json({
+    success: true,
+    count: accounts.length,
+    data: accounts
+  });
 });
 
 // @desc      Get single account

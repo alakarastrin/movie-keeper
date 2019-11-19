@@ -4,13 +4,41 @@
     "about": "I like to travel and watch interesting movies",
     "role": "publisher",
     "photo": "alakara.png",
-    "movies": ""
+    "movies": ["5dca8bbf54e1f426970c62d5"]
   },
   {
     "username": "jaredbrown",
     "about": "This is my movie collection",
     "role": "user",
     "photo": "jared.png",
-    "movies": ""
+    "movies": ["5dca8bbf54e1f426970c62d6"]
+  },
+  {
+    "username": "dmitryob",
+    "about": "I like to travel and watch interesting movies",
+    "role": "user",
+    "photo": "dmitry.png",
+    "movies": ["5dca8bbf54e1f426970c62d8"]
+  },
+  {
+    "username": "bradtraversy",
+    "about": "I'm an IT guy, but I like movies the same as you. And sometimes I need rest. This is my movie collection",
+    "role": "user",
+    "photo": "brad.png",
+    "movies": ["5dca8bbf54e1f426970c62d7"]
+  },
+  {
+    "username": "elenagilbert",
+    "about": "I like to travel and watch interesting movies",
+    "role": "user",
+    "photo": "elena.png",
+    "movies": ["5dca8bbf54e1f426970c62d8"]
+  },
+  {
+    "username": "alex326",
+    "about": "This is my movie collection",
+    "role": "user",
+    "photo": "alex.png",
+    "movies": ["5dca8bbf54e1f426970c62d7"]
   }
 ]

@@ -7,7 +7,6 @@ const ProfileSchema = new mongoose.Schema({
     required: [true, "Please add username"],
     maxlength: [50, "Username can not be more than 50 characters"]
   },
-  slug: String,
   about: {
     type: String,
     maxlength: [200, "Description can not be more than 200 characters"]
@@ -15,16 +14,19 @@ const ProfileSchema = new mongoose.Schema({
   role: {
     type: String,
     enum: ["user", "publisher"],
-    default: user
+    default: "user"
   },
   photo: {
     type: String,
     default: "no-photo.jpg"
   },
-  movies: {
+  account: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
-    required: true
+    ref: "Account"
+  },
+  movie: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Movie"
   }
 });
 

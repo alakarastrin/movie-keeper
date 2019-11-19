@@ -1,30 +1,36 @@
 [
   {
+    "_id": "5dd0321c8112f416c4e79235",
     "username": "dmitryob",
     "email": "dmitryob@gmail.com",
     "password": "2458dmitry"
   },
   {
+    "_id": "5dd02e2fea3ec011b245cbb3",
     "username": "alakarastrin",
     "email": "alakarastrin@gmail.com",
     "password": "salvatore96"
   },
   {
+    "_id": "5dd02e43ea3ec011b245cbb5",
     "username": "jaredbrown",
     "email": "jared.br@gmail.com",
     "password": "iamthejared"
   },
   {
+    "_id": "5dd03bc75369541d9d1b07be",
     "username": "bradtraversy",
     "email": "brad.traversy@gmail.com",
     "password": "12345brad"
   },
   {
+    "_id": "5dd03bdc5369541d9d1b07bf",
     "username": "elenagilbert",
     "email": "elenagilbert17@gmail.com",
     "password": "hugmeplease"
   },
   {
+    "_id": "5dd03bfe9fa1111dfcaae113",
     "username": "alex326",
     "email": "alex.developer@gmail.com",
     "password": "mypassword"
