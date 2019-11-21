@@ -13,12 +13,8 @@ const ProfileSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    enum: ["user", "publisher"],
+    enum: ["user", "admin"],
     default: "user"
-  },
-  photo: {
-    type: String,
-    default: "no-photo.jpg"
   },
   account: {
     type: mongoose.Schema.Types.ObjectId,

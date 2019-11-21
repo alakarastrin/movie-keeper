@@ -1,0 +1,32 @@
+[
+  {
+    "_id": "7dcb3393c32fda229b8e0e10",
+    "title": "Very good movie!",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra feugiat mauris id viverra.",
+    "movie": "5dcb3393c32fda229b8e0e66"
+  },
+  {
+    "_id": "7dca8bbf54e1f426970c6211",
+    "title": "Strong playing",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra feugiat mauris id viverra.",
+    "movie": "5dca8bbf54e1f426970c62d5"
+  },
+  {
+    "_id": "7dca8bbf54e1f426970c6212",
+    "title": "Really interesting detective",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra feugiat mauris id viverra.",
+    "movie": "5dca8bbf54e1f426970c62d8"
+  },
+  {
+    "_id": "7dca8bbf54e1f426970c6213",
+    "title": "Good movie for teenagers",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra feugiat mauris id viverra.",
+    "movie": "5dca8bbf54e1f426970c62d7"
+  },
+  {
+    "_id": "7dca8bbf54e1f426970c6214",
+    "title": "The best vampire movie",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra feugiat mauris id viverra.",
+    "movie": "5dca8bbf54e1f426970c62d6"
+  }
+]

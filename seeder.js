@@ -12,6 +12,7 @@ const Movie = require("./models/Movie");
 const Actor = require("./models/Actor");
 const Account = require("./models/Account");
 const Profile = require("./models/Profile");
+const Comment = require("./models/Comment");
 
 console.log("Loading...");
 
@@ -36,6 +37,9 @@ const accounts = JSON.parse(
 const profiles = JSON.parse(
   fs.readFileSync(`${__dirname}/_data/profiles.json`, "utf-8")
 );
+const comments = JSON.parse(
+  fs.readFileSync(`${__dirname}/_data/comments.json`, "utf-8")
+);
 
 // Import into database
 const importData = async () => {
@@ -44,6 +48,7 @@ const importData = async () => {
     await Actor.create(actors);
     await Account.create(accounts);
     await Profile.create(profiles);
+    await Comment.create(comments);
 
     console.log("Data Imported...".green.inverse);
     process.exit();
@@ -59,6 +64,7 @@ const deleteData = async () => {
     await Actor.deleteMany();
     await Account.deleteMany();
     await Profile.deleteMany();
+    await Comment.deleteMany();
 
     console.log("Data Destroyed...".red.inverse);
     process.exit();

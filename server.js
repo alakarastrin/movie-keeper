@@ -15,6 +15,7 @@ const movies = require("./routes/movies");
 const actors = require("./routes/actors");
 const accounts = require("./routes/accounts");
 const profiles = require("./routes/profiles");
+const comments = require("./routes/comments");
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use("/api/v1/movies", movies);
 app.use("/api/v1/actors", actors);
 app.use("/api/v1/accounts", accounts);
 app.use("/api/v1/profiles", profiles);
+app.use("/api/v1/comments", comments);
 
 app.use(errorHandler);
 
