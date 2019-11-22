@@ -1,11 +1,19 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
+const mongoose = require("mongoose");
 const errorHandler = require("./middleware/error");
 const connectDB = require("./config/db");
 
+const config = require("config");
+
 // Load env
 dotenv.config({ path: "./config/config.env" });
+
+if (!config.get("myprivatekey")) {
+  console.error("FATAL ERROR: myprivatekey is not defined.");
+  process.exit(1);
+}
 
 // Connect to database
 connectDB();

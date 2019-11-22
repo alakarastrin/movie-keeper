@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+const { ObjectId } = mongoose.Schema.Types;
+
 const ProfileSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -17,12 +19,13 @@ const ProfileSchema = new mongoose.Schema({
     default: "user"
   },
   account: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: ObjectId,
     ref: "Account"
   },
-  movie: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Movie"
+  movies: {
+    liked: [{ type: ObjectId, ref: "Movie" }],
+    watched: [{ type: ObjectId, ref: "Movie" }],
+    rated: [{ type: ObjectId, ref: "Movie" }]
   }
 });
 

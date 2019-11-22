@@ -1,4 +1,6 @@
 const express = require("express");
+const { privateRoute, adminRoute } = require("../middleware/auth");
+
 const {
   getMovies,
   getMovie,
@@ -16,12 +18,12 @@ router.use("/:MovieId/actors", actorRouter);
 router
   .route("/")
   .get(getMovies)
-  .post(createMovie);
+  .post([privateRoute, adminRoute], createMovie);
 
 router
   .route("/:id")
   .get(getMovie)
-  .put(updateMovie)
-  .delete(deleteMovie);
+  .put([privateRoute, adminRoute], updateMovie)
+  .delete([privateRoute, adminRoute], deleteMovie);
 
 module.exports = router;

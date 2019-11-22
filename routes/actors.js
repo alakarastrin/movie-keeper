@@ -7,6 +7,8 @@ const {
   deleteActor
 } = require("../controllers/actors");
 
+const { privateRoute, adminRoute } = require("../middleware/auth");
+
 const Movie = require("../models/Movie");
 
 const router = express.Router({ mergeParams: true });
@@ -14,12 +16,12 @@ const router = express.Router({ mergeParams: true });
 router
   .route("/")
   .get(getActors)
-  .post(addActor);
+  .post([privateRoute, adminRoute], addActor);
 
 router
   .route("/:id")
   .get(getActor)
-  .put(updateActor)
-  .delete(deleteActor);
+  .put([privateRoute, adminRoute], updateActor)
+  .delete([privateRoute, adminRoute], deleteActor);
 
 module.exports = router;

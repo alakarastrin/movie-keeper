@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const slugify = require("slugify");
 
+const { ObjectId } = mongoose.Schema.Types;
+
 const MovieSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -26,8 +28,14 @@ const MovieSchema = new mongoose.Schema({
   },
   actors: [
     {
-      type: mongoose.Schema.Types.ObjectId,
+      type: ObjectId,
       ref: "Actor"
+    }
+  ],
+  comments: [
+    {
+      type: ObjectId,
+      ref: "Comment"
     }
   ]
 });

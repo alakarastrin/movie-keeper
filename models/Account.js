@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+const { ObjectId } = mongoose.Schema.Types;
+
 const AccountSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -19,6 +21,14 @@ const AccountSchema = new mongoose.Schema({
     required: [true, "Please add a password"],
     minlength: 8,
     select: false
+  },
+  profile: {
+    type: ObjectId,
+    ref: "Profile"
+  },
+  isAdmin: {
+    type: Boolean,
+    default: false
   }
 });
 
