@@ -1,28 +1,41 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const ActorSchema = new mongoose.Schema({
+  // name: {
+  //   type: String,
+  //   trim: true,
+  //   required: [true, "Please add an actor name"],
+  //   maxlength: [50, "Name can not be more than 50 characters"]
+  // },
   name: {
-    type: String,
-    trim: true,
-    required: [true, "Please add an actor name"],
-    maxlength: [50, "Name can not be more than 50 characters"]
+    first: {
+      type: String,
+      required: true,
+    },
+    last: {
+      type: String,
+      required: true,
+    },
+    middle: {
+      type: String,
+    },
   },
   slug: String,
   email: {
     type: String,
     match: [
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      "Please add a valid email"
-    ]
+      'Please add a valid email',
+    ],
   },
   age: Number,
   born: String,
   movies: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Movie"
-    }
-  ]
+      ref: 'Movie',
+    },
+  ],
 });
 
-module.exports = mongoose.model("Actor", ActorSchema);
+module.exports = mongoose.model('Actor', ActorSchema);

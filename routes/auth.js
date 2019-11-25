@@ -1,9 +1,13 @@
-const express = require("express");
+const express = require('express');
 
-const Account = require("../models/Account");
+const { register, login } = require('../controllers/auth');
 
-const router = express.Router({ mergeParams: true });
+const Account = require('../models/Account');
 
-router.post("/login", (req, res) => {});
+const router = express.Router();
+
+router.post('/register', register);
+
+router.post('/login', login);
 
 module.exports = router;
