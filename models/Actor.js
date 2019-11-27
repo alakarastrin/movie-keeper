@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+const { ObjectId } = mongoose.Schema.Types;
+
 const ActorSchema = new mongoose.Schema({
   // name: {
   //   type: String,
@@ -8,13 +10,13 @@ const ActorSchema = new mongoose.Schema({
   //   maxlength: [50, "Name can not be more than 50 characters"]
   // },
   name: {
-    first: {
+    firstName: {
       type: String,
-      required: true,
+      required: [true, 'Please add a first name'],
     },
-    last: {
+    lastName: {
       type: String,
-      required: true,
+      required: [true, 'PLease add a last name'],
     },
     middle: {
       type: String,
@@ -29,10 +31,21 @@ const ActorSchema = new mongoose.Schema({
     ],
   },
   age: Number,
-  born: String,
+  born: {
+    country: {
+      type: String,
+      required: [true, 'Please add actor country'],
+    },
+    state: {
+      type: String,
+    },
+    city: {
+      type: String,
+    },
+  },
   movies: [
     {
-      type: mongoose.Schema.Types.ObjectId,
+      type: ObjectId,
       ref: 'Movie',
     },
   ],

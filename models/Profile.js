@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const { ObjectId } = mongoose.Schema.Types;
 
@@ -6,27 +6,31 @@ const ProfileSchema = new mongoose.Schema({
   username: {
     type: String,
     trim: true,
-    required: [true, "Please add username"],
-    maxlength: [50, "Username can not be more than 50 characters"]
+    required: [true, 'Please add username'],
+    maxlength: [50, 'Username can not be more than 50 characters'],
   },
   about: {
     type: String,
-    maxlength: [200, "Description can not be more than 200 characters"]
+    maxlength: [200, 'Description can not be more than 200 characters'],
   },
-  role: {
-    type: String,
-    enum: ["user", "admin"],
-    default: "user"
+  // role: {
+  //   type: String,
+  //   enum: ["user", "admin"],
+  //   default: "user"
+  // },
+  isAdmin: {
+    type: Boolean,
+    default: false,
   },
   account: {
     type: ObjectId,
-    ref: "Account"
+    ref: 'Account',
   },
   movies: {
-    liked: [{ type: ObjectId, ref: "Movie" }],
-    watched: [{ type: ObjectId, ref: "Movie" }],
-    rated: [{ type: ObjectId, ref: "Movie" }]
-  }
+    liked: [{ type: ObjectId, ref: 'Movie' }],
+    watched: [{ type: ObjectId, ref: 'Movie' }],
+    rated: [{ type: ObjectId, ref: 'Movie' }],
+  },
 });
 
-module.exports = mongoose.model("Profile", ProfileSchema);
+module.exports = mongoose.model('Profile', ProfileSchema);

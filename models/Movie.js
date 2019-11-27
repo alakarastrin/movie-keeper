@@ -18,11 +18,26 @@ const MovieSchema = new mongoose.Schema({
     trim: true,
     maxlength: [1000, 'Description can not be more than 1000 characters'],
   },
-  genre: {
-    type: String,
-    required: [true, 'Please add a genre'],
-    enum: ['crime drama', 'detective', 'fantasy', 'teen drama'],
-  },
+  genre: [
+    {
+      type: String,
+      required: [true, 'Please add a genre'],
+      enum: [
+        'crime drama',
+        'detective',
+        'fantasy',
+        'teen drama',
+        'drama',
+        'supernatural fiction',
+        'action',
+        'horror',
+        'supernatural horror',
+        'superhero',
+        'mystery',
+        'crime',
+      ],
+    },
+  ],
   country: String,
   rating: {
     type: Number,
@@ -45,6 +60,12 @@ const MovieSchema = new mongoose.Schema({
     {
       type: ObjectId,
       ref: 'Comment',
+    },
+  ],
+  accounts: [
+    {
+      type: ObjectId,
+      ref: 'Account',
     },
   ],
 });

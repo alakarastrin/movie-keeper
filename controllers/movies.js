@@ -1,7 +1,7 @@
-const ErrorResponse = require("../utils/errorResponse");
-const asyncHandler = require("../middleware/async");
-const Movie = require("../models/Movie");
-const { getDocsByPage } = require("../helpers/docHelpers");
+const ErrorResponse = require('../utils/errorResponse');
+const asyncHandler = require('../middleware/async');
+const Movie = require('../models/Movie');
+const { getDocsByPage } = require('../helpers/docHelpers');
 
 // @desc      Get all movies
 // @route     GET /api/v1/movies
@@ -24,7 +24,7 @@ exports.getMovie = asyncHandler(async (req, res, next) => {
 
   if (!movie) {
     return next(
-      new ErrorResponse(`Movie not found with id ${req.params.id}`, 404)
+      new ErrorResponse(`Movie not found with id ${req.params.id}`, 404),
     );
   }
 
@@ -39,7 +39,7 @@ exports.createMovie = asyncHandler(async (req, res, next) => {
 
   res.status(201).json({
     success: true,
-    data: movie
+    data: movie,
   });
 });
 
@@ -49,14 +49,14 @@ exports.createMovie = asyncHandler(async (req, res, next) => {
 exports.updateMovie = asyncHandler(async (req, res, next) => {
   const movie = await Movie.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
-    runValidators: true
+    runValidators: true,
   });
 
   res.status(200).json({ success: true, data: movie });
 
   if (!movie) {
     return next(
-      new ErrorResponse(`Movie not found with id ${req.params.id}`, 404)
+      new ErrorResponse(`Movie not found with id ${req.params.id}`, 404),
     );
   }
 });
@@ -71,7 +71,7 @@ exports.deleteMovie = asyncHandler(async (req, res, next) => {
 
   if (!movie) {
     return next(
-      new ErrorResponse(`Movie not found with id ${req.params.id}`, 404)
+      new ErrorResponse(`Movie not found with id ${req.params.id}`, 404),
     );
   }
 });

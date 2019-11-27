@@ -1,25 +1,28 @@
-const express = require("express");
+const express = require('express');
+
+const { privateRoute, adminRoute } = require('../middleware/auth');
+
 const {
   getProfiles,
   getProfile,
   addProfile,
   updateProfile,
-  deleteProfile
-} = require("../controllers/profiles");
+  deleteProfile,
+} = require('../controllers/profiles');
 
-const Profile = require("../models/Profile");
+const Profile = require('../models/Profile');
 
 const router = express.Router({ mergeParams: true });
 
 router
-  .route("/")
+  .route('/')
   .get(getProfiles)
-  .post(addProfile);
+  .post([privateRoute, adminRoute], addProfile);
 
 router
-  .route("/:id")
+  .route('/:id')
   .get(getProfile)
-  .put(updateProfile)
-  .delete(deleteProfile);
+  .put([privateRoute, adminRoute], updateProfile)
+  .delete([privateRoute, adminRoute], deleteProfile);
 
 module.exports = router;

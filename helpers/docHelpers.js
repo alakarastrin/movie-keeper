@@ -1,5 +1,5 @@
 exports.getDocsByPage = async (Model, query = {}, page = 1, limit = 20) => {
-  if (typeof limit === "string") {
+  if (typeof limit === 'string') {
     limit = Number(limit);
   }
 

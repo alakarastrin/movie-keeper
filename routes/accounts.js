@@ -1,25 +1,28 @@
-const express = require("express");
+const express = require('express');
+
+const { privateRoute, adminRoute } = require('../middleware/auth');
+
 const {
   getAccounts,
   getAccount,
   createAccount,
   updateAccount,
-  deleteAccount
-} = require("../controllers/accounts");
+  deleteAccount,
+} = require('../controllers/accounts');
 
-const Account = require("../models/Account");
+const Account = require('../models/Account');
 
 const router = express.Router({ mergeParams: true });
 
 router
-  .route("/")
+  .route('/')
   .get(getAccounts)
-  .post(createAccount);
+  .post([privateRoute, adminRoute], createAccount);
 
 router
-  .route("/:id")
+  .route('/:id')
   .get(getAccount)
-  .put(updateAccount)
-  .delete(deleteAccount);
+  .put([privateRoute, adminRoute], updateAccount)
+  .delete([privateRoute, adminRoute], deleteAccount);
 
 module.exports = router;

@@ -1,25 +1,25 @@
-const express = require("express");
+const express = require('express');
 const {
   getActors,
   getActor,
   addActor,
   updateActor,
-  deleteActor
-} = require("../controllers/actors");
+  deleteActor,
+} = require('../controllers/actors');
 
-const { privateRoute, adminRoute } = require("../middleware/auth");
+const { privateRoute, adminRoute } = require('../middleware/auth');
 
-const Movie = require("../models/Movie");
+const Movie = require('../models/Movie');
 
 const router = express.Router({ mergeParams: true });
 
 router
-  .route("/")
+  .route('/')
   .get(getActors)
   .post([privateRoute, adminRoute], addActor);
 
 router
-  .route("/:id")
+  .route('/:id')
   .get(getActor)
   .put([privateRoute, adminRoute], updateActor)
   .delete([privateRoute, adminRoute], deleteActor);

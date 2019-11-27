@@ -11,9 +11,13 @@ const {
 
 const actorRouter = require('./actors');
 
+const commentRouter = require('./comments');
+
 const router = express.Router();
 
-router.use('/:MovieId/actors', actorRouter);
+router.use('/:movieId/actors', actorRouter);
+
+router.use('/:movieId/comments', commentRouter);
 
 router
   .route('/')

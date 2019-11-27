@@ -1,23 +1,20 @@
-const ErrorResponse = require("../utils/errorResponse");
-const asyncHandler = require("../middleware/async");
-const Comment = require("../models/Comment");
-const { getDocsByPage } = require("../helpers/docHelpers");
+const ErrorResponse = require('../utils/errorResponse');
+const asyncHandler = require('../middleware/async');
+const Comment = require('../models/Comment');
+const Movie = require('../models/Movie');
+const { getDocsByPage } = require('../helpers/docHelpers');
 
 // @desc      Get all comments
 // @route     GET /api/v1/comments
+// @route     GET /api/v1/movies/movieId/comments
 // @access    Public
 exports.getComments = asyncHandler(async (req, res, next) => {
-  const { commentId, page, limit } = req.query;
+  const { movieId, page, limit } = req.query;
 
   let comments;
 
-  if (commentId) {
-    comments = await getDocsByPage(
-      Comment,
-      { comment: commentId },
-      page,
-      limit
-    );
+  if (movieId) {
+    comments = await getDocsByPage(Comment, { movie: movieId }, page, limit);
   } else {
     comments = await getDocsByPage(Comment, {}, page, limit);
   }
@@ -25,7 +22,7 @@ exports.getComments = asyncHandler(async (req, res, next) => {
   res.status(200).json({
     success: true,
     count: comments.length,
-    data: comments
+    data: comments,
   });
 });
 
@@ -43,19 +40,36 @@ exports.getComment = asyncHandler(async (req, res, next) => {
 
   return res.status(200).json({
     success: true,
-    data: comment
+    data: comment,
   });
 });
 
 // @desc      Add comment
 // @route     POST /api/v1/comments?movieId=1234
 // @access    Private
-exports.createComment = asyncHandler(async (req, res, next) => {
-  const comment = await Comment.create(req.body);
+exports.addComment = asyncHandler(async (req, res, next) => {
+  const { movieId } = req.query;
+  const commentData = req.body;
 
-  res.status(201).json({
+  const movie = await Movie.findById(movieId);
+
+  if (!movie) {
+    return next(new ErrorResponse(`No movie with id ${movieId}`, 404));
+  }
+
+  const comment = await Comment(commentData);
+
+  movie.comments.push(comment.id);
+
+  await movie.save();
+
+  comment.movies.push(movieId);
+
+  comment.save();
+
+  return res.status(200).json({
     success: true,
-    data: comment
+    data: comment,
   });
 });
 
@@ -65,7 +79,7 @@ exports.createComment = asyncHandler(async (req, res, next) => {
 exports.updateComment = asyncHandler(async (req, res, next) => {
   let comment = await Comment.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
-    runValidators: true
+    runValidators: true,
   });
 
   if (!comment) {
@@ -74,7 +88,7 @@ exports.updateComment = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    data: comment
+    data: comment,
   });
 });
 
@@ -90,6 +104,6 @@ exports.deleteComment = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    data: comment
+    data: comment,
   });
 });

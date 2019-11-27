@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+const { ObjectId } = mongoose.Schema.Types;
+
 const CommentSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -10,11 +12,18 @@ const CommentSchema = new mongoose.Schema({
   text: {
     type: String,
     maxlength: [1000, 'Text can not be more than 1000 characters'],
+    required: [true, 'Please add a comment text'],
   },
-  movieId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Movie',
+  profileId: {
+    type: ObjectId,
+    ref: 'Profile',
   },
+  movies: [
+    {
+      type: ObjectId,
+      ref: 'Movie',
+    },
+  ],
 });
 
 module.exports = mongoose.model('Comment', CommentSchema);

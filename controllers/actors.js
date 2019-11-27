@@ -1,11 +1,11 @@
-const ErrorResponse = require("../utils/errorResponse");
-const asyncHandler = require("../middleware/async");
-const Actor = require("../models/Actor");
-const Movie = require("../models/Movie");
-const { getDocsByPage } = require("../helpers/docHelpers");
+const ErrorResponse = require('../utils/errorResponse');
+const asyncHandler = require('../middleware/async');
+const Actor = require('../models/Actor');
+const Movie = require('../models/Movie');
+const { getDocsByPage } = require('../helpers/docHelpers');
 
 // @desc      Get all actors
-// @route     GET /api/v1/actors?movieId=12345
+// @route     GET /api/v1/actors
 // @route     GET /api/v1/movies/movieId/actors
 // @access    Public
 exports.getActors = asyncHandler(async (req, res, next) => {
@@ -22,7 +22,7 @@ exports.getActors = asyncHandler(async (req, res, next) => {
   res.status(200).json({
     success: true,
     count: actors.length,
-    data: actors
+    data: actors,
   });
 });
 
@@ -40,7 +40,7 @@ exports.getActor = asyncHandler(async (req, res, next) => {
 
   return res.status(200).json({
     success: true,
-    data: actor
+    data: actor,
   });
 });
 
@@ -69,7 +69,7 @@ exports.addActor = asyncHandler(async (req, res, next) => {
 
   return res.status(200).json({
     success: true,
-    data: actor
+    data: actor,
   });
 });
 
@@ -79,7 +79,7 @@ exports.addActor = asyncHandler(async (req, res, next) => {
 exports.updateActor = asyncHandler(async (req, res, next) => {
   let actor = await Actor.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
-    runValidators: true
+    runValidators: true,
   });
 
   if (!actor) {
@@ -88,7 +88,7 @@ exports.updateActor = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    data: actor
+    data: actor,
   });
 });
 
@@ -106,6 +106,6 @@ exports.deleteActor = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    data: {}
+    data: {},
   });
 });
