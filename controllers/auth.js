@@ -65,3 +65,45 @@ const sendTokenResponse = (account, statusCode, res) => {
     .cookie('token', token, options)
     .json({ success: true, token });
 };
+
+// @desc      Get current logged in account
+// @route     POST /api/v1/auth/current
+// @access    Private
+exports.getCurrent = asyncHandler(async (req, res, next) => {
+  const { email } = req.body;
+
+  if (!email) {
+    return next(new ErrorResponse('Please provide email', 400));
+  }
+
+  const account = await Account.findOne({ email });
+
+  res.status(200).json({
+    success: true,
+    data: account,
+  });
+});
+
+// @desc      Update information
+// @route     PUT /api/v1/auth/updateinfo
+// @access    Private
+exports.updateInfo = asyncHandler(async (req, res, next) => {
+  const infoToUpdate = {
+    username: req.body.username,
+    email: req.body.email,
+  };
+
+  const account = await Account.findOneAndUpdate(
+    { username, email },
+    infoToUpdate,
+    {
+      new: true,
+      runValidators: true,
+    },
+  );
+
+  res.status(200).json({
+    success: true,
+    data: account,
+  });
+});
