@@ -14,16 +14,17 @@ const CommentSchema = new mongoose.Schema({
     maxlength: [1000, 'Text can not be more than 1000 characters'],
     required: [true, 'Please add a comment text'],
   },
-  profileId: {
-    type: ObjectId,
-    ref: 'Profile',
-  },
-  movies: [
+  replies: [
     {
       type: ObjectId,
-      ref: 'Movie',
+      ref: 'Comment',
     },
   ],
+  createdBy: {
+    type: ObjectId,
+    ref: 'Profile',
+    required: true,
+  },
 });
 
 module.exports = mongoose.model('Comment', CommentSchema);

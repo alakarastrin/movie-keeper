@@ -6,18 +6,28 @@ const { getDocsByPage } = require('../helpers/docHelpers');
 
 // @desc      Get all comments
 // @route     GET /api/v1/comments
-// @route     GET /api/v1/movies/movieId/comments
+// @route     GET /api/v1/comments?movieId=5ddbc3c0b1ede73c6d97e6b7
 // @access    Public
 exports.getComments = asyncHandler(async (req, res, next) => {
   const { movieId, page, limit } = req.query;
 
   let comments;
 
-  if (movieId) {
-    comments = await getDocsByPage(Comment, { movie: movieId }, page, limit);
-  } else {
-    comments = await getDocsByPage(Comment, {}, page, limit);
+  // if (movieId) {
+  //   comments = await getDocsByPage(Comment, { movie: movieId }, page, limit);
+  // } else {
+  //   comments = await getDocsByPage(Comment, {}, page, limit);
+  // }
+
+  const movie = await Movie.findById(movieId);
+
+  if (!movie) {
+    return; // todo
   }
+
+  await movie.populate('comments').execPopulate();
+
+  comments = movie.comments;
 
   res.status(200).json({
     success: true,
@@ -57,15 +67,11 @@ exports.addComment = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse(`No movie with id ${movieId}`, 404));
   }
 
-  const comment = await Comment(commentData);
+  const comment = await Comment.create(commentData);
 
   movie.comments.push(comment.id);
 
   await movie.save();
-
-  comment.movies.push(movieId);
-
-  comment.save();
 
   return res.status(200).json({
     success: true,

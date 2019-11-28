@@ -19,6 +19,4 @@ router.post('/login', login);
 
 router.get('/current', privateRoute, getCurrent);
 
-router.get('/updateinfo', privateRoute, updateInfo);
-
 module.exports = router;

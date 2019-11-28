@@ -16,7 +16,7 @@ const ActorSchema = new mongoose.Schema({
     },
     lastName: {
       type: String,
-      required: [true, 'PLease add a last name'],
+      required: [true, 'Please add a last name'],
     },
     middle: {
       type: String,

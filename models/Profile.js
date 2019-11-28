@@ -13,19 +13,6 @@ const ProfileSchema = new mongoose.Schema({
     type: String,
     maxlength: [200, 'Description can not be more than 200 characters'],
   },
-  // role: {
-  //   type: String,
-  //   enum: ["user", "admin"],
-  //   default: "user"
-  // },
-  isAdmin: {
-    type: Boolean,
-    default: false,
-  },
-  account: {
-    type: ObjectId,
-    ref: 'Account',
-  },
   movies: {
     liked: [{ type: ObjectId, ref: 'Movie' }],
     watched: [{ type: ObjectId, ref: 'Movie' }],

@@ -1,8 +1,8 @@
-const ErrorResponse = require("../utils/errorResponse");
-const asyncHandler = require("../middleware/async");
-const Profile = require("../models/Profile");
-const Account = require("../models/Account");
-const { getDocsByPage } = require("../helpers/docHelpers");
+const ErrorResponse = require('../utils/errorResponse');
+const asyncHandler = require('../middleware/async');
+const Profile = require('../models/Profile');
+const Account = require('../models/Account');
+const { getDocsByPage } = require('../helpers/docHelpers');
 
 // @desc      Get all profiles
 // @route     GET /api/v1/profiles
@@ -17,7 +17,7 @@ exports.getProfiles = asyncHandler(async (req, res, next) => {
       Profile,
       { profile: profileId },
       page,
-      limit
+      limit,
     );
   } else {
     profiles = await getDocsByPage(Profile, {}, page, limit);
@@ -26,7 +26,7 @@ exports.getProfiles = asyncHandler(async (req, res, next) => {
   res.status(200).json({
     success: true,
     count: profiles.length,
-    data: profiles
+    data: profiles,
   });
 });
 
@@ -44,19 +44,23 @@ exports.getProfile = asyncHandler(async (req, res, next) => {
 
   return res.status(200).json({
     success: true,
-    data: profile
+    data: profile,
   });
 });
 
 // @desc      Add profile
-// @route     POST /api/v1/profiles?accountId=1234
+// @route     POST /api/v1/profiles
 // @access    Private
 exports.addProfile = asyncHandler(async (req, res, next) => {
   const profile = await Profile.create(req.body);
 
+  await Account.findByIdAndUpdate(req.accountId, {
+    $set: { profile: profile.id },
+  });
+
   res.status(201).json({
     success: true,
-    data: profile
+    data: profile,
   });
 });
 
@@ -66,7 +70,7 @@ exports.addProfile = asyncHandler(async (req, res, next) => {
 exports.updateProfile = asyncHandler(async (req, res, next) => {
   let profile = await Profile.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
-    runValidators: true
+    runValidators: true,
   });
 
   if (!profile) {
@@ -75,7 +79,7 @@ exports.updateProfile = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    data: profile
+    data: profile,
   });
 });
 
@@ -93,6 +97,6 @@ exports.deleteProfile = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({
     success: true,
-    data: {}
+    data: {},
   });
 });

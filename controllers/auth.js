@@ -70,40 +70,11 @@ const sendTokenResponse = (account, statusCode, res) => {
 // @route     POST /api/v1/auth/current
 // @access    Private
 exports.getCurrent = asyncHandler(async (req, res, next) => {
-  const { email } = req.body;
+  const account = await Account.findById(req.accountId);
 
-  if (!email) {
-    return next(new ErrorResponse('Please provide email', 400));
+  if (!account) {
+    return res.status(404).json({ success: false, msg: 'Account not found!' });
   }
 
-  const account = await Account.findOne({ email });
-
-  res.status(200).json({
-    success: true,
-    data: account,
-  });
-});
-
-// @desc      Update information
-// @route     PUT /api/v1/auth/updateinfo
-// @access    Private
-exports.updateInfo = asyncHandler(async (req, res, next) => {
-  const infoToUpdate = {
-    username: req.body.username,
-    email: req.body.email,
-  };
-
-  const account = await Account.findOneAndUpdate(
-    { username, email },
-    infoToUpdate,
-    {
-      new: true,
-      runValidators: true,
-    },
-  );
-
-  res.status(200).json({
-    success: true,
-    data: account,
-  });
+  res.status(200).json(account);
 });

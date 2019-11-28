@@ -16,15 +16,15 @@ module.exports.privateRoute = (req, res, next) => {
     return res.status(401).json({ msg: 'Your token is not valid!' });
   }
 
+  const { id: accountId } = jwt.decode(token);
+
+  req.accountId = accountId;
+
   next();
 };
 
 module.exports.adminRoute = async (req, res, next) => {
-  const { token } = req.headers;
-
-  const { id: userId } = jwt.decode(token);
-
-  const user = await Account.findById(userId);
+  const user = await Account.findById(req.accountId);
 
   if (!user) {
     return res.status(401).json({ msg: 'Your id is not valid' });

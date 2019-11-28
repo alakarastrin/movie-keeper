@@ -48,24 +48,25 @@ exports.getActor = asyncHandler(async (req, res, next) => {
 // @route     POST /api/v1/actors?movieId=1234
 // @access    Private
 exports.addActor = asyncHandler(async (req, res, next) => {
-  const { movieId } = req.query;
   const actorData = req.body;
 
-  const movie = await Movie.findById(movieId);
+  const actor = Actor(actorData);
 
-  if (!movie) {
-    return next(new ErrorResponse(`No movie with id ${movieId}`, 404));
+  if (actor.movies.length) {
+    await Movie.update(
+      {
+        _id: { $in: actor.movies },
+      },
+      {
+        $push: {
+          actors: actor.id,
+        },
+      },
+      { multi: true },
+    );
   }
 
-  const actor = await Actor(actorData);
-
-  movie.actors.push(actor.id);
-
-  await movie.save();
-
-  actor.movies.push(movieId);
-
-  actor.save();
+  await actor.save();
 
   return res.status(200).json({
     success: true,
