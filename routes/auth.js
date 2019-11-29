@@ -5,6 +5,7 @@ const {
   login,
   getCurrent,
   updateInfo,
+  updatePassword,
 } = require('../controllers/auth');
 
 const Account = require('../models/Account');
@@ -18,5 +19,9 @@ router.post('/register', register);
 router.post('/login', login);
 
 router.get('/current', privateRoute, getCurrent);
+
+router.put('/updateinfo', privateRoute, updateInfo);
+
+router.put('/updatepassword', privateRoute, updatePassword);
 
 module.exports = router;

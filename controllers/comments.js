@@ -22,7 +22,9 @@ exports.getComments = asyncHandler(async (req, res, next) => {
   const movie = await Movie.findById(movieId);
 
   if (!movie) {
-    return; // todo
+    return res
+      .status(404)
+      .json({ success: false, msg: `No movie with id ${movieId}` });
   }
 
   await movie.populate('comments').execPopulate();
@@ -67,7 +69,10 @@ exports.addComment = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse(`No movie with id ${movieId}`, 404));
   }
 
-  const comment = await Comment.create(commentData);
+  const comment = await Comment.create({
+    ...commentData,
+    createdBy: req.profileId,
+  });
 
   movie.comments.push(comment.id);
 

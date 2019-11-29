@@ -43,9 +43,13 @@ AccountSchema.pre('save', async function(next) {
 
 // Sign jwt
 AccountSchema.methods.getSignedJwtToken = function() {
-  return jwt.sign({ id: this._id }, process.env.JWT_SECRET_KEY, {
-    expiresIn: process.env.JWT_EXPIRE,
-  });
+  return jwt.sign(
+    { id: this._id, profileId: this.profile, isAdmin: this.isAdmin },
+    process.env.JWT_SECRET_KEY,
+    {
+      expiresIn: process.env.JWT_EXPIRE,
+    },
+  );
 };
 
 // Match password

@@ -78,3 +78,40 @@ exports.getCurrent = asyncHandler(async (req, res, next) => {
 
   res.status(200).json(account);
 });
+
+// @desc      Update info
+// @route     PUT /api/v1/auth/updateinfo
+// @access    Private
+exports.updateInfo = asyncHandler(async (req, res, next) => {
+  const infoToUpdate = {
+    username: req.body.username,
+    email: req.body.email,
+  };
+
+  const account = await Account.findByIdAndUpdate(req.accountId, infoToUpdate, {
+    new: true,
+    runValidators: true,
+  });
+
+  res.status(200).json({
+    success: true,
+    data: account,
+  });
+});
+
+// @desc      Update password
+// @route     PUT /api/v1/auth/updatepassword
+// @access    Private
+exports.updatePassword = asyncHandler(async (req, res, next) => {
+  const account = await Account.findById(req.accountId).select('+password');
+
+  // Check current password
+  if (!(await account.matchPassword(req.body.currentPassword))) {
+    return next(new ErrorResponse('Password is incorrect', 401));
+  }
+
+  account.password = req.body.newPassword;
+  await account.save();
+
+  sendTokenResponse(account, 200, res);
+});

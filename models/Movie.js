@@ -35,6 +35,10 @@ const MovieSchema = new mongoose.Schema({
         'superhero',
         'mystery',
         'crime',
+        'supernatural',
+        'thriller',
+        'black comedy',
+        'dark fantasy',
       ],
     },
   ],
@@ -47,6 +51,10 @@ const MovieSchema = new mongoose.Schema({
   },
   seasons: Number,
   release: String,
+  awards: {
+    nominated: Number,
+    won: Number,
+  },
   forChildren: {
     type: Boolean,
   },

@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const Account = require('../models/Account');
 
-module.exports.privateRoute = (req, res, next) => {
+module.exports.privateRoute = async (req, res, next) => {
   const { token } = req.headers;
 
   if (!token) {
@@ -16,21 +16,17 @@ module.exports.privateRoute = (req, res, next) => {
     return res.status(401).json({ msg: 'Your token is not valid!' });
   }
 
-  const { id: accountId } = jwt.decode(token);
+  const { id: accountId, isAdmin, profileId } = jwt.decode(token);
 
   req.accountId = accountId;
+  req.profileId = profileId;
+  req.isUserAdmin = isAdmin;
 
   next();
 };
 
-module.exports.adminRoute = async (req, res, next) => {
-  const user = await Account.findById(req.accountId);
-
-  if (!user) {
-    return res.status(401).json({ msg: 'Your id is not valid' });
-  }
-
-  if (!user.isAdmin) {
+module.exports.adminRoute = (req, res, next) => {
+  if (!req.isUserAdmin) {
     return res.status(401).json({ msg: 'You are not authorized' });
   }
 
