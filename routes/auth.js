@@ -6,6 +6,8 @@ const {
   getCurrent,
   updateInfo,
   updatePassword,
+  forgotPassword,
+  resetPassword,
 } = require('../controllers/auth');
 
 const Account = require('../models/Account');
@@ -23,5 +25,9 @@ router.get('/current', privateRoute, getCurrent);
 router.put('/updateinfo', privateRoute, updateInfo);
 
 router.put('/updatepassword', privateRoute, updatePassword);
+
+router.post('/forgotpassword', forgotPassword);
+
+router.put('/resetpassword/:resettoken', resetPassword);
 
 module.exports = router;
