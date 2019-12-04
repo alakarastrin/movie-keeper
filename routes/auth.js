@@ -3,6 +3,7 @@ const express = require('express');
 const {
   register,
   login,
+  logout,
   getCurrent,
   updateInfo,
   updatePassword,
@@ -19,6 +20,8 @@ const { privateRoute, adminRoute } = require('../middleware/auth');
 router.post('/register', register);
 
 router.post('/login', login);
+
+router.get('/logout', logout);
 
 router.get('/current', privateRoute, getCurrent);
 
