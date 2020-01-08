@@ -24,6 +24,8 @@ const Home = props => {
   return (
     <div>
       Home
+      <br />
+      <br />
       <input
         value={actorId}
         onChange={handleInputChange}
